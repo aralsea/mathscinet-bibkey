@@ -1,7 +1,7 @@
 [project]
 name = "mathscinet-bibkey"
 version = "0.1.0"
-description = "Add your description here"
+description = "This script converts citation keys in a specified BibTeX file from MathSciNet's MRxxxxxxx format to a more readable authorYYYYtitle format."
 authors = [
     { name = "Hayato Arai", email = "hayato4d@gmail.com" }
 ]
