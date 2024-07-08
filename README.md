@@ -2,7 +2,7 @@
 
 This script converts citation keys in a specified BibTeX file from MathSciNet's MRxxxxxxx format to a more readable authorYYYYtitle format.
 
-e.g. MR0463157 (= Robin Hartshorne, `Algebraic geometry`) -> hartshorne1977algebraic
+e.g. MR0463157 (= Robin Hartshorne, "Algebraic geometry") -> hartshorne1977algebraic
 
 It processes the input .bib file and generates a new file in the same directory with the prefix 'converted\_', containing the transformed keys while preserving all other bibliographic information.
 
