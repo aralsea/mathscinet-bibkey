@@ -65,3 +65,4 @@ def create_converted_file(bibtex_file_path: Path) -> None:
         bibtex_file_path.parent / f"converted_{bibtex_file_path.name}"
     )
     write_file(file=str(new_bibtex_file_path), library=library)
+    print(f"Created {new_bibtex_file_path}.")

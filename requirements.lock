@@ -12,5 +12,7 @@
 -e file:.
 bibtexparser @ git+https://github.com/sciunto-org/python-bibtexparser/@214ef38eabd60538cc96349bc31d219897029f70
     # via mathscinet-bibkey
+click==8.1.7
+    # via mathscinet-bibkey
 pylatexenc==2.10
     # via bibtexparser

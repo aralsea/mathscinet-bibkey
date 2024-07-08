@@ -14,6 +14,8 @@ bibtexparser @ git+https://github.com/sciunto-org/python-bibtexparser/@214ef38ea
     # via mathscinet-bibkey
 cfgv==3.4.0
     # via pre-commit
+click==8.1.7
+    # via mathscinet-bibkey
 distlib==0.3.8
     # via virtualenv
 filelock==3.15.4

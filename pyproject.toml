@@ -7,12 +7,13 @@ authors = [
 ]
 dependencies = [
     "bibtexparser @ git+https://github.com/sciunto-org/python-bibtexparser/",
+    "click>=8.1.7",
 ]
 readme = "README.md"
 requires-python = ">= 3.8"
 
 [project.scripts]
-"mathscinet-bibkey" = "mathscinet_bibkey:main"
+"convert-bibkey" = "mathscinet_bibkey:main"
 
 [build-system]
 requires = ["hatchling"]
