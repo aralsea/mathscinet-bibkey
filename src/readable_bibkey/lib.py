@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 from bibtexparser.entrypoint import parse_file, write_file
@@ -32,6 +33,13 @@ def get_plain_title(title: str) -> str:
     ]
 
     return "_".join(plain_word_list)
+
+
+def extract_first_4digit_number(text: str) -> str:
+    match = re.search(r"\d{4}", text)
+    if match:
+        return match.group()
+    raise ValueError("Year field has invalid value.")
 
 
 def get_new_key(entry: Entry) -> str:
@@ -70,7 +78,7 @@ def get_new_key(entry: Entry) -> str:
         prefix
         + get_plain_authors_name(author=author, is_arxiv=is_arxiv)
         + "_"
-        + year
+        + extract_first_4digit_number(text=year)
         + "_"
         + get_plain_title(title=title)
     )
