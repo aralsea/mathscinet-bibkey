@@ -8,6 +8,8 @@ It processes the input .bib file and generates a new file in the same directory 
 
 e.g. my_file.bib -> my_file.bib converted_my_file.bib
 
+Additionally, this script adds a prefix "book\_" (resp. "preprint\_") for @book entries (resp. @misc that have archiveprefix = {arXiv} entries).
+
 ## Installation
 
 ### via rye (see https://rye.astral.sh/guide/tools/)
