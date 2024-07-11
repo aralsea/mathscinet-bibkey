@@ -1,8 +1,13 @@
+import io
+import sys
 from pathlib import Path
 
 from bibtexparser.entrypoint import parse_file, write_file
 from bibtexparser.library import Library
 from bibtexparser.model import Entry
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
 
 
 def extract_lowercase_alphabet_num(text: str) -> str:
