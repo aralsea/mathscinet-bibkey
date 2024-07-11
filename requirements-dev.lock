@@ -11,11 +11,11 @@
 
 -e file:.
 bibtexparser @ git+https://github.com/sciunto-org/python-bibtexparser/@214ef38eabd60538cc96349bc31d219897029f70
-    # via mathscinet-bibkey
+    # via readable-bibkey
 cfgv==3.4.0
     # via pre-commit
 click==8.1.7
-    # via mathscinet-bibkey
+    # via readable-bibkey
 distlib==0.3.8
     # via virtualenv
 filelock==3.15.4
