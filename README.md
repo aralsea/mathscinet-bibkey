@@ -15,13 +15,13 @@ Additionally, this script adds a prefix "book\_" (resp. "preprint\_") for @book 
 ### via rye (see https://rye.astral.sh/guide/tools/)
 
 ```shell
-rye install --git https://github.com/aralsea/readable-bibkey
+rye install readable-bibkey --git https://github.com/aralsea/readable-bibkey
 ```
 
 ### via pip
 
 ```shell
-pip install git+https://github.com/aralsea/readable-bibkey
+pip install readable-bibkey git+https://github.com/aralsea/readable-bibkey
 ```
 
 ## Usage
