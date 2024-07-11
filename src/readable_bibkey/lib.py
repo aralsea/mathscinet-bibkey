@@ -72,7 +72,7 @@ def get_new_key(entry: Entry) -> str:
     is_arxiv = (
         entry.entry_type == "misc"
         and ("archiveprefix" in entry and entry["archiveprefix"] == "arXiv")
-        or ("arxivPrefix" in entry and entry["arxivPrefix"] == "arXiv")
+        or ("arxivPrefix" in entry and entry["archivPrefix"] == "arXiv")
     )
     return (
         prefix
