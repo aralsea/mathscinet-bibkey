@@ -35,19 +35,24 @@ def get_plain_title(title: str) -> str:
 
 
 def get_new_key(entry: Entry) -> str:
-    if "author" not in entry:
-        raise ValueError("Author field is missing")
-    else:
+    if "author" in entry:
         author: str = entry["author"]
-    if "year" not in entry:
-        raise ValueError("Year field is missing")
+    elif "AUTHOR" in entry:
+        author = entry["AUTHOR"]
     else:
+        raise ValueError("Author field is missing")
+    if "year" in entry:
         year: str = entry["year"]
-    if "title" not in entry:
-        raise ValueError("Title field is missing")
+    elif "YEAR" in entry:
+        year = entry["YEAR"]
     else:
-        title = entry["title"]
-
+        raise ValueError("Year field is missing")
+    if "title" in entry:
+        title: str = entry["title"]
+    elif "TITLE" in entry:
+        title = entry["TITLE"]
+    else:
+        raise ValueError("Title field is missing")
     match entry.entry_type:
         case "misc":
             prefix = "preprint_"
@@ -58,10 +63,9 @@ def get_new_key(entry: Entry) -> str:
 
     is_arxiv = (
         entry.entry_type == "misc"
-        and "archiveprefix" in entry
-        and entry["archiveprefix"] == "arXiv"
+        and ("archiveprefix" in entry and entry["archiveprefix"] == "arXiv")
+        or ("arxivPrefix" in entry and entry["arxivPrefix"] == "arXiv")
     )
-
     return (
         prefix
         + get_plain_authors_name(author=author, is_arxiv=is_arxiv)
