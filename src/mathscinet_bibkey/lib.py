@@ -4,32 +4,34 @@ from bibtexparser.entrypoint import parse_file, write_file
 from bibtexparser.library import Library
 from bibtexparser.model import Entry
 
-PLAIN_TITLE_MIN_LENGTH = 7
+
+def extract_lowercase_alphabet_num(text: str) -> str:
+    return "".join(char.lower() for char in text if char.isalnum())
 
 
-def extract_lowercase_alphabet(text: str) -> str:
-    return "".join(char.lower() for char in text if char.isalpha())
-
-
-def get_plain_authors_name(author: str) -> str:
-    names = author.split("and")
-    family_names = [name.split(",")[0] for name in names]
+def get_plain_authors_name(author: str, is_arxiv: bool) -> str:
+    names = author.split(" and ")
+    if is_arxiv:  # return full name for arxiv papers
+        return "_".join(
+            [
+                extract_lowercase_alphabet_num(text=name)
+                for full_name in names
+                for name in full_name.split()
+            ]
+        )
+    family_names = [name.split()[0] for name in names]
     plain_family_names = [
-        extract_lowercase_alphabet(text=name) for name in family_names
+        extract_lowercase_alphabet_num(text=name) for name in family_names
     ]
-    return "".join(plain_family_names)
+    return "_".join(plain_family_names)
 
 
 def get_plain_title(title: str) -> str:
     plain_word_list = [
-        extract_lowercase_alphabet(text=word) for word in title.split(" ")
+        extract_lowercase_alphabet_num(text=word) for word in title.split()
     ]
-    plain_title = ""
-    for word in plain_word_list:
-        plain_title += word
-        if len(plain_title) >= PLAIN_TITLE_MIN_LENGTH:
-            break
-    return plain_title
+
+    return "_".join(plain_word_list)
 
 
 def get_new_key(entry: Entry) -> str:
@@ -46,16 +48,36 @@ def get_new_key(entry: Entry) -> str:
     else:
         title = entry["title"]
 
-    return get_plain_authors_name(author=author) + year + get_plain_title(title=title)
+    match entry.entry_type:
+        case "misc":
+            prefix = "preprint_"
+        case "book":
+            prefix = "book_"
+        case _:
+            prefix = ""
+
+    is_arxiv = (
+        entry.entry_type == "misc"
+        and "archiveprefix" in entry
+        and entry["archiveprefix"] == "arXiv"
+    )
+
+    return (
+        prefix
+        + get_plain_authors_name(author=author, is_arxiv=is_arxiv)
+        + "_"
+        + year
+        + "_"
+        + get_plain_title(title=title)
+    )
 
 
 def convert_library(library: Library) -> None:
     for entry in library.entries:
-        if entry.key.startswith("MR") and entry.key[2:].isdigit():
-            try:
-                entry.key = get_new_key(entry=entry)
-            except Exception as error:
-                print(f"Skipped {entry.key}: {error}")
+        try:
+            entry.key = get_new_key(entry=entry)
+        except Exception as error:
+            print(f"Skipped {entry.key}: {error}")
 
 
 def create_converted_file(bibtex_file_path: Path) -> None:

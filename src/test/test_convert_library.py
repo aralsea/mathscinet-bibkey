@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 from bibtexparser.library import Library
 
-TEST_TARGET_PATH_STR = ["../input/hartshorne.bib"]
+TEST_TARGET_PATH_STR = ["../input/hartshorne.bib", "../input/evans_lekili.bib"]
 
 
 @pytest.mark.parametrize(
