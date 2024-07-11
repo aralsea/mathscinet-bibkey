@@ -2,7 +2,7 @@ from pathlib import Path
 
 import click
 
-from mathscinet_bibkey.lib import create_converted_file
+from readable_bibkey.lib import create_converted_file
 
 
 @click.command()
