@@ -1,7 +1,7 @@
 [project]
-name = "mathscinet-bibkey"
+name = "readable-bibkey"
 version = "0.1.0"
-description = "This script converts citation keys in a specified BibTeX file from MathSciNet's MRxxxxxxx format to a more readable authorYYYYtitle format."
+description = "This script converts citation keys in a specified BibTeX file to a readable author_YYYY_title format."
 authors = [
     { name = "Hayato Arai", email = "hayato4d@gmail.com" }
 ]
@@ -13,7 +13,7 @@ readme = "README.md"
 requires-python = ">= 3.8"
 
 [project.scripts]
-"mathscinet-bibkey" = "mathscinet_bibkey:main"
+"readable-bibkey" = "readable_bibkey:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -30,4 +30,4 @@ dev-dependencies = [
 allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/mathscinet_bibkey"]
+packages = ["src/readable_bibkey"]
